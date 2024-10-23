@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Welcome to Einatan Lemma's Art Portfolio</h1>
+<p>Explore the vibrant world of a 10-year-old digital and manual artist!</p>
+
+<section id="recent-works">
+    <h2>Recent Artworks</h2>
+    <div class="artwork-grid">
+        {% for artwork in recent_artworks %}
+        <div class="artwork-item">
+            <a href="{{ url_for('artwork.artwork_detail', artwork_id=artwork.id) }}">
+                <img src="{{ url_for('static', filename='uploads/' + artwork.image_filename) }}" alt="{{ artwork.title }}">
+                <h3>{{ artwork.title }}</h3>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

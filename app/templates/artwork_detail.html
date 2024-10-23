@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ artwork.title }}</h1>
+<img src="{{ url_for('static', filename='uploads/' + artwork.image_filename) }}" alt="{{ artwork.title }}" class="artwork-full">
+
+<div class="artwork-info">
+    <p><strong>Created:</strong> {{ artwork.created_date.strftime('%B %d, %Y') }}</p>
+    <p><strong>Medium:</strong> {{ artwork.medium }}</p>
+    <p><strong>Category:</strong> {{ artwork.category }}</p>
+</div>
+
+<div class="artwork-description">
+    <h2>Description</h2>
+    <p>{{ artwork.description }}</p>
+</div>
+
+<div class="rating-system">
+    <h3>Rate this artwork:</h3>
+    <div class="stars" data-artwork-id="{{ artwork.id }}">
+        <span class="star" data-value="1">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="5">&#9733;</span>
+    </div>
+    <p>Average rating: <span id="average-rating">0</span></p>
+</div>
+
+<div class="comment-box">
+    <h3>Leave a comment:</h3>
+    <textarea id="comment-text" rows="4" cols="50"></textarea>
+    <button id="submit-comment">Submit</button>
+</div>
+{% endblock %}

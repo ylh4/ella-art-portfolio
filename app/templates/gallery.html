@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Art Gallery</h1>
+
+<div class="category-filter">
+    <a href="{{ url_for('gallery.gallery') }}">All</a>
+    <a href="{{ url_for('gallery.gallery_category', category='digital') }}">Digital</a>
+    <a href="{{ url_for('gallery.gallery_category', category='manual') }}">Manual</a>
+</div>
+
+<div class="artwork-grid">
+    {% for artwork in artworks.items %}
+    <div class="artwork-item">
+        <a href="{{ url_for('artwork.artwork_detail', artwork_id=artwork.id) }}">
+            <img src="{{ url_for('static', filename='uploads/' + artwork.image_filename) }}" alt="{{ artwork.title }}">
+            <h3>{{ artwork.title }}</h3>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="pagination">
+    {% if artworks.has_prev %}
+    <a href="{{ url_for('gallery.gallery', page=artworks.prev_num) }}">Previous</a>
+    {% endif %}
+    {% if artworks.has_next %}
+    <a href="{{ url_for('gallery.gallery', page=artworks.next_num) }}">Next</a>
+    {% endif %}
+</div>
+{% endblock %}

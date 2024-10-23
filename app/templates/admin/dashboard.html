@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Admin Dashboard</h1>
+
+<nav class="admin-nav">
+    <ul>
+        <li><a href="{{ url_for('admin.upload_artwork') }}">Upload New Artwork</a></li>
+        <li><a href="{{ url_for('blog.new_post') }}">Create New Blog Post</a></li>
+    </ul>
+</nav>
+
+<section id="recent-uploads">
+    <h2>Recent Uploads</h2>
+    <!-- Add a list of recently uploaded artworks here -->
+</section>
+
+<section id="recent-comments">
+    <h2>Recent Comments</h2>
+    <!-- Add a list of recent comments here -->
+</section>
+{% endblock %}
